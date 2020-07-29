@@ -2,10 +2,12 @@ package br.felipehenriques.transfermoney.Operacao.Servico;
 
 import br.felipehenriques.transfermoney.Usuario.entidade.Usuario;
 
+import java.math.BigDecimal;
 
-public class OperacaoServicoClienteLojista implements OperacaoServicoCliente {
+public class OperacaoClienteComumServico implements OperacaoServicoCliente {
+
     @Override
-    public void transferir(Usuario usuario) {
+    public void transferir(BigDecimal valorTransferencia, Usuario usuarioOrigem, Usuario usuarioDestino) {
 
     }
 
