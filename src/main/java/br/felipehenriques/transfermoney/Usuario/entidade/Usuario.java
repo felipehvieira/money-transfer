@@ -1,18 +1,17 @@
 package br.felipehenriques.transfermoney.Usuario.entidade;
-
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.UUID;
 
+@Entity
 public class Usuario {
-
     @Id
     private UUID id;
     private String nomeCompleto;
-    @Column(name = "email", unique = true)
+    @Column(unique = true)
     private String email;
-    @Column(name = "documento", unique = true)
+    @Column(unique = true)
     private String documento;
     private TipoUsuario tipoUsuario;
     private String senha;
