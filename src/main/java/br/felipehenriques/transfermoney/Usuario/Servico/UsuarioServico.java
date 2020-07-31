@@ -5,6 +5,7 @@ import br.felipehenriques.transfermoney.Carteira.Domain.dto.SaldoResponse;
 import br.felipehenriques.transfermoney.Infrastructure.Handler.Exceptions.NotFoundException;
 import br.felipehenriques.transfermoney.Usuario.Repositorio.UsuarioRepositorio;
 import br.felipehenriques.transfermoney.Usuario.entidade.Usuario;
+import br.felipehenriques.transfermoney.Usuario.entidade.UsuarioBuilder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -21,7 +22,18 @@ public class UsuarioServico {
         this.carteiraClient = carteiraClient;
     }
 
-    protected Usuario salvar(Usuario usuario) {
+    public Usuario salvar(Usuario usuarioRequest) {
+        //realiza o cadastro da carteira
+        UUID idCarteira = UUID.randomUUID();
+        Usuario usuario =
+                new UsuarioBuilder()
+                .nomeCompleto(usuarioRequest.getNomeCompleto())
+                .documento(usuarioRequest.getDocumento())
+                .email(usuarioRequest.getEmail())
+                .tipoUsuario(usuarioRequest.getTipoUsuario())
+                .senha(usuarioRequest.getSenha())
+                .build();
+
         return repositorio.save(usuario);
     }
 
