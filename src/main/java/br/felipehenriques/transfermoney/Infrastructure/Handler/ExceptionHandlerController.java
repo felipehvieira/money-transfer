@@ -1,5 +1,6 @@
 package br.felipehenriques.transfermoney.Infrastructure.Handler;
 
+import br.felipehenriques.transfermoney.Infrastructure.Handler.Exceptions.BadRequestException;
 import br.felipehenriques.transfermoney.Infrastructure.Handler.Exceptions.ConflictException;
 import br.felipehenriques.transfermoney.Infrastructure.Handler.Exceptions.NotFoundException;
 import org.apache.coyote.Response;
@@ -19,5 +20,10 @@ public class ExceptionHandlerController {
     @ExceptionHandler(ConflictException.class)
     public ResponseEntity<Object> handlerConflictException(ConflictException e) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<Object> handlerBadRequestException(BadRequestException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 }

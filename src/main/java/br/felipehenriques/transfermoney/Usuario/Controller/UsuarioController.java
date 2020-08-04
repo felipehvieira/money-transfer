@@ -23,6 +23,6 @@ public class UsuarioController {
     @PostMapping(value = "/usuario")
     public ResponseEntity cadastrarUsuario(@RequestBody Usuario usuarioRequest){
         Usuario usuario = servico.salvar(usuarioRequest);
-        return new ResponseEntity(HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.OK).body(usuario);
     }
 }
