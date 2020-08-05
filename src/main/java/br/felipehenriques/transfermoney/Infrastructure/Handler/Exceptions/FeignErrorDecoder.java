@@ -12,7 +12,7 @@ public class FeignErrorDecoder implements ErrorDecoder {
             case 400:
                 return new BadRequestException(response.reason());
             default:
-                return new NotFoundException("Feign Decoder");
+                return new NotFoundException("Erro Desconhecido");
         }
 
     }
