@@ -30,9 +30,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: Build jar
+          run: mvn -B clean deploy -DskipTests
       - name: Publish Image
         uses: craftech-io/package-action@v3.1.0
-        run: mvn -B clean install -DskipTests
         with:
           tags: latest
           access_token: ${{ secrets.PACKAGE_TOKEN }}
