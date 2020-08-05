@@ -28,7 +28,7 @@ public class Usuario {
 
     public Usuario(){}
 
-    protected Usuario(UUID id,String nomeCompleto, String email, String documento, TipoUsuario tipoUsuario, String senha) {
+    public Usuario(UUID id,String nomeCompleto, String email, String documento, TipoUsuario tipoUsuario, String senha) {
         this.id = id;
         this.nomeCompleto = nomeCompleto;
         this.email = email;

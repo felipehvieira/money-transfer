@@ -28,8 +28,12 @@ public class OperacaoClienteLojistaServico implements OperacaoServicoCliente {
 
     @Override
     public void transferir(BigDecimal valorTransferencia, UUID usuarioOrigem, UUID usuarioDestino) {
-        Usuario origem = repositorio.findById(usuarioOrigem).orElseThrow(() -> new NotFoundException("Usuário Inexistente."));
-        Usuario destino = repositorio.findById(usuarioDestino).orElseThrow(() -> new NotFoundException("Usuário Inexistente."));
+
+        if(usuarioOrigem.equals(usuarioDestino))
+            throw new BadRequestException("Não é possível reaizar uma transferencia a si mesmo.");
+
+        Usuario origem = repositorio.findById(usuarioOrigem).orElseThrow(() -> new NotFoundException("Usuário Origem Inexistente."));
+        Usuario destino = repositorio.findById(usuarioDestino).orElseThrow(() -> new NotFoundException("Usuário Destino Inexistente."));
         BigDecimal taxaTransferencia = new BigDecimal("5");
         //getSaldo usuarioOrigem
         //verifica se há saldo suficiente
