@@ -31,7 +31,7 @@ jobs:
         with:
           java-version: 11
       - name: Build jar
-          run: mvn -B clean deploy -DskipTests
+        run: mvn -B clean install -DskipTests
       - name: Publish Image
         uses: craftech-io/package-action@v3.1.0
         with:
