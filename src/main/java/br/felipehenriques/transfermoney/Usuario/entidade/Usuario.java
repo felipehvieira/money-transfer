@@ -1,21 +1,41 @@
 package br.felipehenriques.transfermoney.Usuario.entidade;
-
-import org.springframework.data.annotation.Id;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
+@Entity
 public class Usuario {
-
     @Id
+    @Type(type = "uuid-char")
     private UUID id;
+    @NotNull
     private String nomeCompleto;
-    @Column(name = "email", unique = true)
+    @NotNull(message = "Not null")
+    @Column(unique = true)
     private String email;
-    @Column(name = "documento", unique = true)
+    @NotNull
+    @Column(unique = true)
     private String documento;
+    @NotNull(message = "not null")
     private TipoUsuario tipoUsuario;
+    @NotNull
     private String senha;
+
+    public Usuario(){}
+
+    protected Usuario(UUID id,String nomeCompleto, String email, String documento, TipoUsuario tipoUsuario, String senha) {
+        this.id = id;
+        this.nomeCompleto = nomeCompleto;
+        this.email = email;
+        this.documento = documento;
+        this.tipoUsuario = tipoUsuario;
+        this.senha = senha;
+    }
 
     public String getNomeCompleto() {
         return nomeCompleto;
